@@ -1,0 +1,2080 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 16,
+      "panels": [],
+      "title": "$website",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 1
+      },
+      "id": 5,
+      "interval": "5m",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(filename) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\"[$__interval]))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Total requests",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 1
+      },
+      "id": 3,
+      "interval": "1h",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "count(sum by (remote_addr) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\"[$__interval])))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Visitor per Hour",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 1
+      },
+      "id": 48,
+      "interval": "5m",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum(sum_over_time({filename=\"$filename\"} | json | unwrap bytes_sent | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Bytes Sent",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "status: 101": {
+                  "index": 0,
+                  "text": "status: 101 Switching Protocols"
+                },
+                "status: 102": {
+                  "index": 1,
+                  "text": "status: 102 Processing"
+                },
+                "status: 103": {
+                  "index": 2,
+                  "text": "status: 103 Early Hints"
+                },
+                "status: 200": {
+                  "index": 3,
+                  "text": "status: 200 OK"
+                },
+                "status: 201": {
+                  "index": 4,
+                  "text": "status: 201 Created"
+                },
+                "status: 202": {
+                  "index": 5,
+                  "text": "status: 202 Accepted"
+                },
+                "status: 203": {
+                  "index": 6,
+                  "text": "status: 203 Non-Authoritative Information"
+                },
+                "status: 204": {
+                  "index": 7,
+                  "text": "status: 204 No Content"
+                },
+                "status: 205": {
+                  "index": 8,
+                  "text": "status: 205 Reset Content"
+                },
+                "status: 206": {
+                  "index": 9,
+                  "text": "status: 206 Partial Content"
+                },
+                "status: 207": {
+                  "index": 10,
+                  "text": "status: 207 Multi-Status"
+                },
+                "status: 208": {
+                  "index": 11,
+                  "text": "status: 208 Already Reported"
+                },
+                "status: 226": {
+                  "index": 12,
+                  "text": "status: 226 IM Used"
+                },
+                "status: 300": {
+                  "index": 13,
+                  "text": "status: 300 Multiple Choices"
+                },
+                "status: 301": {
+                  "index": 14,
+                  "text": "status: 301 Moved Permanently"
+                },
+                "status: 302": {
+                  "index": 15,
+                  "text": "status: 302 Found"
+                },
+                "status: 303": {
+                  "index": 16,
+                  "text": "status: 303 See Other"
+                },
+                "status: 304": {
+                  "index": 17,
+                  "text": "status: 304 Not Modified"
+                },
+                "status: 305": {
+                  "index": 18,
+                  "text": "status: 305 Use Proxy"
+                },
+                "status: 306": {
+                  "index": 19,
+                  "text": "status: 306 unused"
+                },
+                "status: 307": {
+                  "index": 20,
+                  "text": "status: 307 Temporary Redirect"
+                },
+                "status: 308": {
+                  "index": 21,
+                  "text": "status: 308 Permanent Redirect"
+                },
+                "status: 401": {
+                  "index": 22,
+                  "text": "status: 401 Unauthorized"
+                },
+                "status: 402": {
+                  "index": 23,
+                  "text": "status: 402 Payment Required"
+                },
+                "status: 403": {
+                  "index": 24,
+                  "text": "status: 403 Forbidden"
+                },
+                "status: 404": {
+                  "index": 25,
+                  "text": "status: 404 Not Found"
+                },
+                "status: 405": {
+                  "index": 26,
+                  "text": "status: 405 Method Not Allowed"
+                },
+                "status: 406": {
+                  "index": 27,
+                  "text": "status: 406 Not Acceptable"
+                },
+                "status: 407": {
+                  "index": 28,
+                  "text": "status: 407 Proxy Authentication Required"
+                },
+                "status: 408": {
+                  "index": 29,
+                  "text": "status: 408 Request Timeout"
+                },
+                "status: 409": {
+                  "index": 30,
+                  "text": "status: 409 Conflict"
+                },
+                "status: 410": {
+                  "index": 31,
+                  "text": "status: 410 Gone"
+                },
+                "status: 411": {
+                  "index": 32,
+                  "text": "status: 411 Length Required"
+                },
+                "status: 412": {
+                  "index": 33,
+                  "text": "status: 412 Precondition Failed"
+                },
+                "status: 413": {
+                  "index": 34,
+                  "text": "status: 413 Payload Too Large"
+                },
+                "status: 414": {
+                  "index": 35,
+                  "text": "status: 414 URI Too Long"
+                },
+                "status: 415": {
+                  "index": 36,
+                  "text": "status: 415 Unsupported Media Type"
+                },
+                "status: 416": {
+                  "index": 37,
+                  "text": "status: 416 Range Not Satisfiable"
+                },
+                "status: 417": {
+                  "index": 38,
+                  "text": "status: 417 Expectation Failed"
+                },
+                "status: 418": {
+                  "index": 39,
+                  "text": "status: 418 I'm a teapot"
+                },
+                "status: 421": {
+                  "index": 40,
+                  "text": "status: 421 Misdirected Request"
+                },
+                "status: 422": {
+                  "index": 41,
+                  "text": "status: 422 Unprocessable Content"
+                },
+                "status: 423": {
+                  "index": 42,
+                  "text": "status: 423 Locked"
+                },
+                "status: 424": {
+                  "index": 43,
+                  "text": "status: 424 Failed Dependency"
+                },
+                "status: 425": {
+                  "index": 44,
+                  "text": "status: 425 Too Early"
+                },
+                "status: 426": {
+                  "index": 45,
+                  "text": "status: 426 Upgrade Required"
+                },
+                "status: 428": {
+                  "index": 46,
+                  "text": "status: 428 Precondition Required"
+                },
+                "status: 429": {
+                  "index": 47,
+                  "text": "status: 429 Too Many Requests"
+                },
+                "status: 431": {
+                  "index": 48,
+                  "text": "status: 431 Request Header Fields Too Large"
+                },
+                "status: 451": {
+                  "index": 49,
+                  "text": "status: 451 Unavailable For Legal Reasons"
+                },
+                "status: 500": {
+                  "index": 50,
+                  "text": "status: 500 Internal Server Error"
+                },
+                "status: 501": {
+                  "index": 51,
+                  "text": "status: 501 Not Implemented"
+                },
+                "status: 502": {
+                  "index": 52,
+                  "text": "status: 502 Bad Gateway"
+                },
+                "status: 503": {
+                  "index": 53,
+                  "text": "status: 503 Service Unavailable"
+                },
+                "status: 504": {
+                  "index": 54,
+                  "text": "status: 504 Gateway Timeout"
+                },
+                "status: 505": {
+                  "index": 55,
+                  "text": "status: 505 HTTP Version Not Supported"
+                },
+                "status: 506": {
+                  "index": 56,
+                  "text": "status: 506 Variant Also Negotiates"
+                },
+                "status: 507": {
+                  "index": 57,
+                  "text": "status: 507 Insufficient Storage"
+                },
+                "status: 508": {
+                  "index": 58,
+                  "text": "status: 508 Loop Detected"
+                },
+                "status: 510": {
+                  "index": 59,
+                  "text": "status: 510 Not Extended"
+                },
+                "status: 511": {
+                  "index": 60,
+                  "text": "status: 511 Network Authentication Required"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (sum)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-blue",
+                  "mode": "fixed",
+                  "seriesBy": "last"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 13,
+        "x": 11,
+        "y": 1
+      },
+      "id": 34,
+      "interval": "5m",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^Value \\(sum\\)$/",
+          "limit": 6,
+          "values": true
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(status) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "HTTP status: {{status}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Request per status code",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "status: 101": {
+                  "index": 0,
+                  "text": "status: 101 Switching Protocols"
+                },
+                "status: 102": {
+                  "index": 1,
+                  "text": "status: 102 Processing"
+                },
+                "status: 103": {
+                  "index": 2,
+                  "text": "status: 103 Early Hints"
+                },
+                "status: 200": {
+                  "index": 3,
+                  "text": "status: 200 OK"
+                },
+                "status: 201": {
+                  "index": 4,
+                  "text": "status: 201 Created"
+                },
+                "status: 202": {
+                  "index": 5,
+                  "text": "status: 202 Accepted"
+                },
+                "status: 203": {
+                  "index": 6,
+                  "text": "status: 203 Non-Authoritative Information"
+                },
+                "status: 204": {
+                  "index": 7,
+                  "text": "status: 204 No Content"
+                },
+                "status: 205": {
+                  "index": 8,
+                  "text": "status: 205 Reset Content"
+                },
+                "status: 206": {
+                  "index": 9,
+                  "text": "status: 206 Partial Content"
+                },
+                "status: 207": {
+                  "index": 10,
+                  "text": "status: 207 Multi-Status"
+                },
+                "status: 208": {
+                  "index": 11,
+                  "text": "status: 208 Already Reported"
+                },
+                "status: 226": {
+                  "index": 12,
+                  "text": "status: 226 IM Used"
+                },
+                "status: 300": {
+                  "index": 13,
+                  "text": "status: 300 Multiple Choices"
+                },
+                "status: 301": {
+                  "index": 14,
+                  "text": "status: 301 Moved Permanently"
+                },
+                "status: 302": {
+                  "index": 15,
+                  "text": "status: 302 Found"
+                },
+                "status: 303": {
+                  "index": 16,
+                  "text": "status: 303 See Other"
+                },
+                "status: 304": {
+                  "index": 17,
+                  "text": "status: 304 Not Modified"
+                },
+                "status: 305": {
+                  "index": 18,
+                  "text": "status: 305 Use Proxy"
+                },
+                "status: 306": {
+                  "index": 19,
+                  "text": "status: 306 unused"
+                },
+                "status: 307": {
+                  "index": 20,
+                  "text": "status: 307 Temporary Redirect"
+                },
+                "status: 308": {
+                  "index": 21,
+                  "text": "status: 308 Permanent Redirect"
+                },
+                "status: 401": {
+                  "index": 22,
+                  "text": "status: 401 Unauthorized"
+                },
+                "status: 402": {
+                  "index": 23,
+                  "text": "status: 402 Payment Required"
+                },
+                "status: 403": {
+                  "index": 24,
+                  "text": "status: 403 Forbidden"
+                },
+                "status: 404": {
+                  "index": 25,
+                  "text": "status: 404 Not Found"
+                },
+                "status: 405": {
+                  "index": 26,
+                  "text": "status: 405 Method Not Allowed"
+                },
+                "status: 406": {
+                  "index": 27,
+                  "text": "status: 406 Not Acceptable"
+                },
+                "status: 407": {
+                  "index": 28,
+                  "text": "status: 407 Proxy Authentication Required"
+                },
+                "status: 408": {
+                  "index": 29,
+                  "text": "status: 408 Request Timeout"
+                },
+                "status: 409": {
+                  "index": 30,
+                  "text": "status: 409 Conflict"
+                },
+                "status: 410": {
+                  "index": 31,
+                  "text": "status: 410 Gone"
+                },
+                "status: 411": {
+                  "index": 32,
+                  "text": "status: 411 Length Required"
+                },
+                "status: 412": {
+                  "index": 33,
+                  "text": "status: 412 Precondition Failed"
+                },
+                "status: 413": {
+                  "index": 34,
+                  "text": "status: 413 Payload Too Large"
+                },
+                "status: 414": {
+                  "index": 35,
+                  "text": "status: 414 URI Too Long"
+                },
+                "status: 415": {
+                  "index": 36,
+                  "text": "status: 415 Unsupported Media Type"
+                },
+                "status: 416": {
+                  "index": 37,
+                  "text": "status: 416 Range Not Satisfiable"
+                },
+                "status: 417": {
+                  "index": 38,
+                  "text": "status: 417 Expectation Failed"
+                },
+                "status: 418": {
+                  "index": 39,
+                  "text": "status: 418 I'm a teapot"
+                },
+                "status: 421": {
+                  "index": 40,
+                  "text": "status: 421 Misdirected Request"
+                },
+                "status: 422": {
+                  "index": 41,
+                  "text": "status: 422 Unprocessable Content"
+                },
+                "status: 423": {
+                  "index": 42,
+                  "text": "status: 423 Locked"
+                },
+                "status: 424": {
+                  "index": 43,
+                  "text": "status: 424 Failed Dependency"
+                },
+                "status: 425": {
+                  "index": 44,
+                  "text": "status: 425 Too Early"
+                },
+                "status: 426": {
+                  "index": 45,
+                  "text": "status: 426 Upgrade Required"
+                },
+                "status: 428": {
+                  "index": 46,
+                  "text": "status: 428 Precondition Required"
+                },
+                "status: 429": {
+                  "index": 47,
+                  "text": "status: 429 Too Many Requests"
+                },
+                "status: 431": {
+                  "index": 48,
+                  "text": "status: 431 Request Header Fields Too Large"
+                },
+                "status: 451": {
+                  "index": 49,
+                  "text": "status: 451 Unavailable For Legal Reasons"
+                },
+                "status: 499": {
+                  "index": 61,
+                  "text": "status: 499 Client Closed Request"
+                },
+                "status: 500": {
+                  "index": 50,
+                  "text": "status: 500 Internal Server Error"
+                },
+                "status: 501": {
+                  "index": 51,
+                  "text": "status: 501 Not Implemented"
+                },
+                "status: 502": {
+                  "index": 52,
+                  "text": "status: 502 Bad Gateway"
+                },
+                "status: 503": {
+                  "index": 53,
+                  "text": "status: 503 Service Unavailable"
+                },
+                "status: 504": {
+                  "index": 54,
+                  "text": "status: 504 Gateway Timeout"
+                },
+                "status: 505": {
+                  "index": 55,
+                  "text": "status: 505 HTTP Version Not Supported"
+                },
+                "status: 506": {
+                  "index": 56,
+                  "text": "status: 506 Variant Also Negotiates"
+                },
+                "status: 507": {
+                  "index": 57,
+                  "text": "status: 507 Insufficient Storage"
+                },
+                "status: 508": {
+                  "index": 58,
+                  "text": "status: 508 Loop Detected"
+                },
+                "status: 510": {
+                  "index": 59,
+                  "text": "status: 510 Not Extended"
+                },
+                "status: 511": {
+                  "index": 60,
+                  "text": "status: 511 Network Authentication Required"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (sum)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu",
+                  "seriesBy": "last"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Value (sum)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 5
+      },
+      "id": 14,
+      "interval": "5m",
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(status) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "status: {{status}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Pie chart - Status",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "status: 101": {
+                  "index": 0,
+                  "text": "status: 101 Switching Protocols"
+                },
+                "status: 102": {
+                  "index": 1,
+                  "text": "status: 102 Processing"
+                },
+                "status: 103": {
+                  "index": 2,
+                  "text": "status: 103 Early Hints"
+                },
+                "status: 200": {
+                  "index": 3,
+                  "text": "status: 200 OK"
+                },
+                "status: 201": {
+                  "index": 4,
+                  "text": "status: 201 Created"
+                },
+                "status: 202": {
+                  "index": 5,
+                  "text": "status: 202 Accepted"
+                },
+                "status: 203": {
+                  "index": 6,
+                  "text": "status: 203 Non-Authoritative Information"
+                },
+                "status: 204": {
+                  "index": 7,
+                  "text": "status: 204 No Content"
+                },
+                "status: 205": {
+                  "index": 8,
+                  "text": "status: 205 Reset Content"
+                },
+                "status: 206": {
+                  "index": 9,
+                  "text": "status: 206 Partial Content"
+                },
+                "status: 207": {
+                  "index": 10,
+                  "text": "status: 207 Multi-Status"
+                },
+                "status: 208": {
+                  "index": 11,
+                  "text": "status: 208 Already Reported"
+                },
+                "status: 226": {
+                  "index": 12,
+                  "text": "status: 226 IM Used"
+                },
+                "status: 300": {
+                  "index": 13,
+                  "text": "status: 300 Multiple Choices"
+                },
+                "status: 301": {
+                  "index": 14,
+                  "text": "status: 301 Moved Permanently"
+                },
+                "status: 302": {
+                  "index": 15,
+                  "text": "status: 302 Found"
+                },
+                "status: 303": {
+                  "index": 16,
+                  "text": "status: 303 See Other"
+                },
+                "status: 304": {
+                  "index": 17,
+                  "text": "status: 304 Not Modified"
+                },
+                "status: 305": {
+                  "index": 18,
+                  "text": "status: 305 Use Proxy"
+                },
+                "status: 306": {
+                  "index": 19,
+                  "text": "status: 306 unused"
+                },
+                "status: 307": {
+                  "index": 20,
+                  "text": "status: 307 Temporary Redirect"
+                },
+                "status: 308": {
+                  "index": 21,
+                  "text": "status: 308 Permanent Redirect"
+                },
+                "status: 401": {
+                  "index": 22,
+                  "text": "status: 401 Unauthorized"
+                },
+                "status: 402": {
+                  "index": 23,
+                  "text": "status: 402 Payment Required"
+                },
+                "status: 403": {
+                  "index": 24,
+                  "text": "status: 403 Forbidden"
+                },
+                "status: 404": {
+                  "index": 25,
+                  "text": "status: 404 Not Found"
+                },
+                "status: 405": {
+                  "index": 26,
+                  "text": "status: 405 Method Not Allowed"
+                },
+                "status: 406": {
+                  "index": 27,
+                  "text": "status: 406 Not Acceptable"
+                },
+                "status: 407": {
+                  "index": 28,
+                  "text": "status: 407 Proxy Authentication Required"
+                },
+                "status: 408": {
+                  "index": 29,
+                  "text": "status: 408 Request Timeout"
+                },
+                "status: 409": {
+                  "index": 30,
+                  "text": "status: 409 Conflict"
+                },
+                "status: 410": {
+                  "index": 31,
+                  "text": "status: 410 Gone"
+                },
+                "status: 411": {
+                  "index": 32,
+                  "text": "status: 411 Length Required"
+                },
+                "status: 412": {
+                  "index": 33,
+                  "text": "status: 412 Precondition Failed"
+                },
+                "status: 413": {
+                  "index": 34,
+                  "text": "status: 413 Payload Too Large"
+                },
+                "status: 414": {
+                  "index": 35,
+                  "text": "status: 414 URI Too Long"
+                },
+                "status: 415": {
+                  "index": 36,
+                  "text": "status: 415 Unsupported Media Type"
+                },
+                "status: 416": {
+                  "index": 37,
+                  "text": "status: 416 Range Not Satisfiable"
+                },
+                "status: 417": {
+                  "index": 38,
+                  "text": "status: 417 Expectation Failed"
+                },
+                "status: 418": {
+                  "index": 39,
+                  "text": "status: 418 I'm a teapot"
+                },
+                "status: 421": {
+                  "index": 40,
+                  "text": "status: 421 Misdirected Request"
+                },
+                "status: 422": {
+                  "index": 41,
+                  "text": "status: 422 Unprocessable Content"
+                },
+                "status: 423": {
+                  "index": 42,
+                  "text": "status: 423 Locked"
+                },
+                "status: 424": {
+                  "index": 43,
+                  "text": "status: 424 Failed Dependency"
+                },
+                "status: 425": {
+                  "index": 44,
+                  "text": "status: 425 Too Early"
+                },
+                "status: 426": {
+                  "index": 45,
+                  "text": "status: 426 Upgrade Required"
+                },
+                "status: 428": {
+                  "index": 46,
+                  "text": "status: 428 Precondition Required"
+                },
+                "status: 429": {
+                  "index": 47,
+                  "text": "status: 429 Too Many Requests"
+                },
+                "status: 431": {
+                  "index": 48,
+                  "text": "status: 431 Request Header Fields Too Large"
+                },
+                "status: 451": {
+                  "index": 49,
+                  "text": "status: 451 Unavailable For Legal Reasons"
+                },
+                "status: 499": {
+                  "index": 61,
+                  "text": "status: 499 Client Closed Request"
+                },
+                "status: 500": {
+                  "index": 50,
+                  "text": "status: 500 Internal Server Error"
+                },
+                "status: 501": {
+                  "index": 51,
+                  "text": "status: 501 Not Implemented"
+                },
+                "status: 502": {
+                  "index": 52,
+                  "text": "status: 502 Bad Gateway"
+                },
+                "status: 503": {
+                  "index": 53,
+                  "text": "status: 503 Service Unavailable"
+                },
+                "status: 504": {
+                  "index": 54,
+                  "text": "status: 504 Gateway Timeout"
+                },
+                "status: 505": {
+                  "index": 55,
+                  "text": "status: 505 HTTP Version Not Supported"
+                },
+                "status: 506": {
+                  "index": 56,
+                  "text": "status: 506 Variant Also Negotiates"
+                },
+                "status: 507": {
+                  "index": 57,
+                  "text": "status: 507 Insufficient Storage"
+                },
+                "status: 508": {
+                  "index": 58,
+                  "text": "status: 508 Loop Detected"
+                },
+                "status: 510": {
+                  "index": 59,
+                  "text": "status: 510 Not Extended"
+                },
+                "status: 511": {
+                  "index": 60,
+                  "text": "status: 511 Network Authentication Required"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value (sum)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu",
+                  "seriesBy": "last"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Value (sum)"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 8,
+        "y": 5
+      },
+      "id": 44,
+      "interval": "5m",
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_method) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "Method: {{request_method}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Pie chart - Method",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Request(s)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 300
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 10,
+        "x": 14,
+        "y": 5
+      },
+      "id": 39,
+      "interval": "5m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Request(s)"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"}| json | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Top IPs of \"$website\"",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Metric": "Website",
+              "Value (sum)": "Request(s)"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 42,
+      "panels": [],
+      "title": "Bad Requests",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Request(s)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 300
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 40,
+      "interval": "5m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Request(s)"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"401\" | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "401"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"403\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "403"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"404\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "404"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"400\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "400"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"500\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "500"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"502\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "502"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(remote_addr) (count_over_time({filename=\"$filename\"} | json | status = \"301\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{remote_addr}}",
+          "queryType": "range",
+          "refId": "301"
+        }
+      ],
+      "title": "Top (bad) IPs - \"$website\"",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Metric": "IP address",
+              "Value (sum)": "Request(s)"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "All request_uri that get a status between the following: 401,403,404,400,500,502,301",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Request(s)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 300
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 15
+      },
+      "id": 43,
+      "interval": "5m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Request(s)"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"401\" | server_name = \"$website\" [$__interval]))",
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "401"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"403\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "403"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"404\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "404"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"400\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "400"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"500\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "500"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"502\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "502"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "sum by(request_uri) (count_over_time({filename=\"$filename\"} | json | status = \"301\" | server_name = \"$website\" [$__interval]))",
+          "hide": false,
+          "legendFormat": "{{request_uri}}",
+          "queryType": "range",
+          "refId": "301"
+        }
+      ],
+      "title": "Top (bad) request_uri - \"$website\"",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Value": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Metric": "IP address",
+              "Value (sum)": "Request(s)"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 54,
+      "panels": [],
+      "title": "Raw data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 52,
+      "interval": "5m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.3.13",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "{filename=\"$filename\"} | json | server_name = `$website` | line_format `Request for {{.request_uri}} with HTTP status {{.status}}`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Raw data",
+      "type": "table"
+    }
+  ],
+  "refresh": "1m",
+  "revision": 1,
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [
+    "Website"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "/var/log/all_proxy_access.log",
+          "value": "/var/log/all_proxy_access.log"
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "P8E80F9AEF21F6940"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Filename",
+        "multi": false,
+        "name": "filename",
+        "options": [],
+        "query": {
+          "label": "filename",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": "your-domain1.com",
+        "current": {
+          "selected": false,
+          "text": "your-domain1.com",
+          "value": "your-domain1.com"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Website",
+        "multi": false,
+        "name": "website",
+        "options": [
+          {
+            "selected": true,
+            "text": "your-domain1.com",
+            "value": "your-domain1.com"
+          },
+          {
+            "selected": false,
+            "text": "your-domain2.com",
+            "value": "your-domain2.com"
+          },
+          {
+            "selected": false,
+            "text": "your-domain3.com",
+            "value": "your-domain3.com"
+          },
+          {
+            "selected": false,
+            "text": "your-domain4.com",
+            "value": "your-domain4.com"
+          }
+        ],
+        "query": "your-domain1.com,your-domain2.com,your-domain3.com,your-domain4.com",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Websites",
+  "uid": "f32c8ffe-d1be-4230-94f3-cc93jgjgfds",
+  "version": 3,
+  "weekStart": ""
+}
